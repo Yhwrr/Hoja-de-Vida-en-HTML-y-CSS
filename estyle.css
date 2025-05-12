@@ -1,0 +1,227 @@
+/* ========================================
+   1. TIPOGRAFÍA DESCARGADA
+   ======================================== */
+@font-face {
+  font-family: 'MiLetra';
+  src: url('../fonts/mi-tipografia.ttf') format('truetype');
+}
+
+/* ========================================
+   2. RESET Y MODELO DE CAJAS
+   ======================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'MiLetra', sans-serif;
+  background-color: #f9f9f9;
+  color: #222;
+  line-height: 1.6;
+  padding: 1rem;
+}
+
+/* ========================================
+   3. PALETA DE COLORES
+   ======================================== */
+:root {
+  --azul:    #2c3e50;
+  --naranja: #e67e22;
+  --gris:    #ecf0f1;
+  --blanco:  #ffffff;
+}
+
+/* ========================================
+   4. SECCIÓN PERFIL (CABECERO COMPLETO)
+   ======================================== */
+.perfil {
+  display: flex;
+  align-items: center;
+  background-color: var(--gris);
+  border-radius: 0 20px 20px 0;
+  overflow: hidden;
+  cursor: pointer;
+  width: 100%;              /* ocupa todo el ancho */
+  max-height: 120px;        /* altura inicial = altura de la foto */
+  transition: max-height 0.5s ease;
+  margin-bottom: 1.5rem;
+}
+
+.perfil:hover {
+  max-height: 300px;        /* altura expandida para la descripción */
+}
+
+/* FOTO FIJA 120×120 */
+.foto {
+  flex: 0 0 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 40% 10% 40% 10%;
+  border: 3px solid var(--azul);
+}
+
+/* CONTENEDOR DE TEXTO: LADO DERECHO */
+.perfil-texto {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0.5rem 1rem;
+}
+
+/* NOMBRE (siempre visible) */
+.perfil-top {
+  flex: 0 0 auto;
+}
+
+.perfil-top h1 {
+  font-size: 1.2rem;
+  color: var(--azul);
+  line-height: 1.1;
+}
+
+/* DESCRIPCIÓN (oculta inicialmente) */
+.perfil-bottom {
+  flex: 1 1 auto;
+  margin-top: 0.5rem;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.perfil:hover .perfil-bottom {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========================================
+   5. RESTO DE SECCIONES (GRID, LISTAS, ETC.)
+   ======================================== */
+main {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+section:not(.perfil) {
+  background-color: var(--blanco);
+  padding: 1rem;
+  border-radius: 15px;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+section:not(.perfil):hover {
+  transform: translateY(-3px);
+  background-color: #fafafa;
+}
+
+h2 {
+  color: var(--azul);
+  margin-bottom: 0.5rem;
+  border-bottom: 2px solid var(--naranja);
+  padding-bottom: 0.3rem;
+}
+
+ul {
+  list-style-type: square;
+  padding-left: 1.2rem;
+}
+
+ul li + li {
+  margin-top: 0.5rem;
+}
+
+/* ========================================
+   6. ENLACES
+   ======================================== */
+a {
+  color: var(--naranja);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+a:hover {
+  color: var(--azul);
+}
+
+/* ========================================
+   7. PIE DE PÁGINA
+   ======================================== */
+footer {
+  text-align: center;
+  margin-top: 2rem;
+}
+footer p {
+  color: #555;
+  animation: latido 2s infinite;
+}
+@keyframes latido {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.03); }
+  100% { transform: scale(1); }
+}
+
+/* ========================================
+   8. RESPONSIVO
+   ======================================== */
+@media (max-width: 768px) {
+  .perfil {
+    max-height: none;
+  }
+  .foto {
+    flex: 0 0 100px;
+    height: 100px;
+  }
+}
+.splash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: splashFade 4s forwards;
+}
+
+.splash h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  background: linear-gradient(120deg, #2196f3 0%, #bbdefb 100%);
+  background-clip: text;
+  color: transparent;
+  animation: revealText 3s ease-out forwards;
+}
+
+@keyframes revealText {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+    letter-spacing: 0.05em;
+  }
+  100% {
+    opacity: 1;
+    letter-spacing: normal;
+  }
+}
+
+@keyframes splashFade {
+  0% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
