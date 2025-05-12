@@ -225,3 +225,13 @@ footer p {
     pointer-events: none;
   }
 }
+
+@font-face {
+  font-family: 'Carolingia';
+  src: url('fonts/carolingia.ttf') format('truetype');
+  unicode-range: U+0061-007A; /* a-z */,/* A-Z */
+}
+
+body {
+  font-family: 'Carolingia'
+}
